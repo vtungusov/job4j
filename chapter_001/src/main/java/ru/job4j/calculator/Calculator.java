@@ -42,7 +42,7 @@ public class Calculator {
     }
 
     /**
-     * Method echo.
+     * Method multiply.
      *
      * @param first  - first number.
      * @param second - second number.
