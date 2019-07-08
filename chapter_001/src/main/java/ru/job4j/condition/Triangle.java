@@ -23,7 +23,7 @@ public class Triangle {
      * @return answer
      */
     private boolean exist(double a, double c, double b) {
-        return a < (b + c);
+        return (a < (b + c)) && (b < (a + c)) && (c < (a + b));
     }
 
     /**
