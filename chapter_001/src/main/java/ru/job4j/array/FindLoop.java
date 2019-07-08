@@ -23,4 +23,24 @@ public class FindLoop {
         }
         return rst;
     }
+
+    /**
+     * Ищет индекс искомого элемента в диапазоне массива
+     *
+     * @param data   Массив данных
+     * @param el     Искомый элемент
+     * @param start  Индекс с которого начинаем поиск
+     * @param finish Индекс которым заканчиваем поиск
+     * @return индекс элемента
+     */
+    public int indexOf(int[] data, int el, int start, int finish) {
+        int rst = -1;
+        for (int index = start; index < finish; index++) {
+            if (data[index] == el) {
+                rst = index;
+                break;
+            }
+        }
+        return rst;
+    }
 }
