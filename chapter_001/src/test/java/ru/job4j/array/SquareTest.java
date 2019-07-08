@@ -14,4 +14,13 @@ public class SquareTest {
         int[] expect = new int[]{1, 4, 9};
         assertThat(rst, is(expect));
     }
+
+    @Test
+    public void whenBound8ThenMass() {
+        int bound = 8;
+        Square square = new Square();
+        int[] rst = square.calculate(bound);
+        int[] expect = new int[]{1, 4, 9, 16, 25, 36, 49, 64};
+        assertThat(rst, is(expect));
+    }
 }
