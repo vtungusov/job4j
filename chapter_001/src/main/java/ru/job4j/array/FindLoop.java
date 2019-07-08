@@ -43,4 +43,42 @@ public class FindLoop {
         }
         return rst;
     }
+
+    /**
+     * Сортировка массива методом выбора
+     *
+     * @param data массив данных
+     * @return отсортированный массив
+     */
+    public int[] sort(int[] data) {
+        int limit = 0; //граница разделения отсортированной и не отсортированной частей
+        int minIndex = 0; //индекс минимального значения массива
+
+        while (limit < data.length) {
+
+            /*
+            ищем минимальное значение в неотсортированной части массива
+            */
+            for (int i = limit + 1; i < data.length; i++) {
+                if (data[i] < data[minIndex]) {
+                    minIndex = i;
+                }
+            }
+
+            /*
+            Переставляем минимальное знаечение в начало неотсортированной части
+             */
+            int tmp = data[limit];
+            data[limit] = data[minIndex];
+            data[minIndex] = tmp;
+
+            /*
+            Сдвигаем указатель отсортированной части
+            и обнуляем minIndex
+             */
+            limit++;
+            minIndex = limit;
+        }
+        return data;
+    }
 }
