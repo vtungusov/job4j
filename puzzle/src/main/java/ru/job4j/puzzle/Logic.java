@@ -68,33 +68,20 @@ public class Logic {
 
     public boolean isWin() {
         int[][] table = this.convert();
-        boolean result = true;
+        boolean result = false;
 
-        /* ищем первое вхождение */
-        boolean go = false;
-        for (int i = 0; i < table.length && !go; i++)
-            for (int j = 0; j < table.length && !go; j++)
-                if (table[i][j] == 1) {
+        int count1 = 0;
+        int count2 = 0;
 
-                    /* поиск в текущем ряду */
-                    for (int k = 0; k < table.length; k++)
-                        if (table[i][k] != 1) {
-                            go = true;
-                            break;
-                        }
-
-                    if (!go) {
-                        go = true;
-                        break;
-                    }
-
-                    /* поиск в текущем столбце */
-                    for (int k = 0; k < table.length; k++)
-                        if (table[k][j] != 1) {
-                            result = false;
-                            break;
-                        }
-                }
+        for (int i = 0; i < table.length; i++) {
+            for (int j = 0; j < table.length; j++) {
+                if (table[i][j] == 1) count1++;
+                if (table[j][i] == 1) count2++;
+            }
+            if (count1 == table.length || count2 == table.length) {
+                result = true;
+            }
+        }
         return result;
     }
 
