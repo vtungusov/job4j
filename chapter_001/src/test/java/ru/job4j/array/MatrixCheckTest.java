@@ -19,6 +19,18 @@ public class MatrixCheckTest {
     }
 
     @Test
+    public void whenDataMonoByTrueFalseTrue() {
+        MatrixCheck check = new MatrixCheck();
+        boolean[][] input = new boolean[][]{
+                {true, true, false},
+                {false, true, true},
+                {true, false, true}
+        };
+        boolean result = check.mono(input);
+        assertThat(result, is(false));
+    }
+
+    @Test
     public void whenDataNotMonoByTrueThenFalse() {
         MatrixCheck check = new MatrixCheck();
         boolean[][] input = new boolean[][]{
