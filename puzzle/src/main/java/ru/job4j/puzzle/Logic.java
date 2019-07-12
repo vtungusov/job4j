@@ -70,10 +70,10 @@ public class Logic {
         int[][] table = this.convert();
         boolean result = false;
 
-        int count1 = 0;
-        int count2 = 0;
 
         for (int i = 0; i < table.length; i++) {
+            int count1 = 0;
+            int count2 = 0;
             for (int j = 0; j < table.length; j++) {
                 if (table[i][j] == 1) count1++;
                 if (table[j][i] == 1) count2++;
