@@ -20,6 +20,21 @@ public class Calculator {
     }
 
     /**
+     * Method add.
+     *
+     * @param first  - first number.
+     * @param second - second number.
+     * @param third  - third number.
+     * @return sum of numbers
+     */
+    public double add(double first, double second, double third) {
+        return add(
+                first,
+                add(second, third)
+        );
+    }
+
+    /**
      * Method subtract.
      *
      * @param first  - first number.
