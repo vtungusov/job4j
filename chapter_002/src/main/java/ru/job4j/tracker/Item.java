@@ -14,6 +14,11 @@ public class Item {
         this.time = time;
     }
 
+    public Item(String name, String desc) {
+        this.name = name;
+        this.decs = desc;
+    }
+
     public String getId() {
         return id;
     }
@@ -60,5 +65,15 @@ public class Item {
     @Override
     public int hashCode() {
         return Objects.hash(id, name, decs, time);
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", decs='" + decs + '\'' +
+                ", time=" + time +
+                '}';
     }
 }

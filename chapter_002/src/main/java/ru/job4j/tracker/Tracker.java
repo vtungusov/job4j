@@ -95,9 +95,10 @@ public class Tracker {
             if (this.items[i].getName().equals(key))
                 count++;
         Item[] result = new Item[count];
+        int index = 0;
         for (int i = 0; i < this.position; i++)
-            if (this.items[i].getName().equals(key))
-                result[i] = this.items[i];
+            if (this.items[i] != null && this.items[i].getName().equals(key))
+                result[index++] = this.items[i];
         return result;
     }
 
