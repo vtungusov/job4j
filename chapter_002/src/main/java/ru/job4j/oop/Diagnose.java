@@ -17,8 +17,10 @@ public enum Diagnose {
 
     @Override
     public String toString() {
-        return "Diagnose{" +
-                "verdict='" + verdict + '\'' +
-                '}';
+        return "Diagnose{"
+                + "verdict='"
+                + verdict
+                + '\''
+                + '}';
     }
 }

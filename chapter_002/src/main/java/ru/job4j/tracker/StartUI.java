@@ -71,6 +71,8 @@ public class StartUI {
                 case EXIT:
                     exit = true;
                     break;
+                default:
+                    break;
             }
         }
     }
@@ -106,10 +108,11 @@ public class StartUI {
         System.out.println("------------ Удаление заявки ------------");
         String id = this.input.ask("Введите ID (уникальный идентификатор) удаляемой заявки :");
         boolean delete = tracker.delete(id);
-        if (delete)
+        if (delete) {
             System.out.println("------------ Заявка успешно удалена. ------------");
-        else
+        } else {
             System.out.println("------------ Не удалось удалить заявку. ------------");
+        }
 
     }
 
@@ -123,10 +126,11 @@ public class StartUI {
         String desc = this.input.ask("Введите новое описание заявки :");
         Item item = new Item(name, desc);
         boolean replace = tracker.replace(id, item);
-        if (replace)
+        if (replace) {
             System.out.println("------------ Изменения успешно сохранены. ------------");
-        else
+        } else {
             System.out.println("------------ Не удалось сохранить изменения. ------------");
+        }
     }
 
     /**
