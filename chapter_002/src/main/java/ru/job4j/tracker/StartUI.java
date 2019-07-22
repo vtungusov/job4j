@@ -1,6 +1,7 @@
 package ru.job4j.tracker;
 
 /**
+ * @author Vasily Tungusov
  * @version $Id$
  * @since 0.1
  */
@@ -14,12 +15,11 @@ public class StartUI {
     private static final String DELETE = "3";
     private static final String FIND_BY_ID = "4";
     private static final String FIND_BY_NAME = "5";
-
-
     /**
      * Константа для выхода из цикла.
      */
     private static final String EXIT = "6";
+
     /**
      * Получение данных от пользователя.
      */
