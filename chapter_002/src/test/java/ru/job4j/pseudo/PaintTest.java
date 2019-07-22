@@ -1,5 +1,7 @@
 package ru.job4j.pseudo;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -9,12 +11,22 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 public class PaintTest {
+    private final PrintStream stdOut = new PrintStream(System.out);
+    private final ByteArrayOutputStream out = new ByteArrayOutputStream();
+    private final Paint paint = new Paint();
+
+    @Before
+    public void setUp() {
+        System.setOut(new PrintStream(out));
+    }
+
+    @After
+    public void backOutput() {
+        System.setOut(stdOut);
+    }
+
     @Test
     public void whenDrawSquare() {
-        PrintStream stdOut = new PrintStream(System.out);
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(out));
-        Paint paint = new Paint();
         paint.draw(new Square());
         assertThat(new String(out.toByteArray()), is(
                 new StringBuilder()
@@ -34,10 +46,6 @@ public class PaintTest {
 
     @Test
     public void whenDrawTriangle() {
-        PrintStream stdOut = new PrintStream(System.out);
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(out));
-        Paint paint = new Paint();
         paint.draw(new Triangle());
         assertThat(new String(out.toByteArray()), is(
                 new StringBuilder()
