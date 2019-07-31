@@ -40,7 +40,8 @@ public class StartUITest {
         Tracker tracker = new Tracker();     // создаём Tracker
         Input input = new StubInput(new String[]{"0", "test name", "desc", "6"});   //создаём StubInput с последовательностью действий
         new StartUI(input, tracker).init();     //   создаём StartUI и вызываем метод init()
-        assertThat(tracker.findAll()[0].getName(), is("test name")); // проверяем, что нулевой элемент массива в трекере содержит имя, введённое при эмуляции.
+        Item[] items = tracker.findByName("test name");
+        assertThat(tracker.findAll(), is(items)); // проверяем, что нулевой элемент массива в трекере содержит имя, введённое при эмуляции.
     }
 
     @Test
@@ -95,7 +96,7 @@ public class StartUITest {
                 .add(menu)
                 .add("------------ Поиск заявки по ID ------------")
                 .add("------------ Информация по искомой заявке : ------------")
-                .add("Item{id='" + add.getId() + "', name='" + add.getName() + "', decs='" + add.getDecs() + "', time=0}")
+                .add("Item{id='" + add.getId() + "', name='" + add.getName() + "', decs='" + add.getDesc() + "', time=0}")
                 .add(menu);
         assertThat(out.toString().trim(), is(except.toString()));
     }
@@ -113,7 +114,7 @@ public class StartUITest {
                 .add(menu)
                 .add("------------ Поиск заявки по имени ------------")
                 .add("------------ Информация по заявкам с именем " + add.getName() + " : ------------")
-                .add("1. Item{id='" + add.getId() + "', name='" + add.getName() + "', decs='" + add.getDecs() + "', time=0}")
+                .add("1. Item{id='" + add.getId() + "', name='" + add.getName() + "', decs='" + add.getDesc() + "', time=0}")
                 .add(menu);
         assertThat(out.toString().trim(), is(except.toString()));
     }
