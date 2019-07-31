@@ -18,6 +18,16 @@ public class MenuTracker {
      * @param хранит ссылку на объект .
      */
     private Tracker tracker;
+
+    public int[] getRanges() {
+        int[] result = new int[this.getActionsLentgh()];
+        int pointer = 0;
+        for (UserAction action : actions) {
+            result[pointer++] = action.key();
+        }
+        return result;
+    }
+
     /**
      * @param хранит ссылку на массив типа UserAction.
      */
@@ -184,7 +194,9 @@ public class MenuTracker {
             String id = input.ask("Введите ID (уникальный идентификатор) искомой заявки :");
             Item item = tracker.findById(id);
             System.out.println("------------ Информация по искомой заявке : ------------");
-            System.out.println(item);
+            if (item != null) {
+                System.out.println(item);
+            }
         }
 
         @Override

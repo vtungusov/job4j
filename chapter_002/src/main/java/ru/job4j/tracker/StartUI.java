@@ -36,11 +36,11 @@ public class StartUI {
         menu.fillActions();
         while (true) {
             menu.show();
-            String ask = input.ask("Select:");
-            if (ask.equals("6")) {
+            int ask = input.ask("Select:", menu.getRanges());
+            if (ask == 6) {
                 break;
             }
-            menu.select(Integer.valueOf(ask));
+            menu.select(ask);
         }
     }
 
@@ -50,6 +50,6 @@ public class StartUI {
      * @param args
      */
     public static void main(String[] args) {
-        new StartUI(new ConsoleInput(), new Tracker()).init();
+        new StartUI(new ValidateInput(), new Tracker()).init();
     }
 }
