@@ -1,5 +1,7 @@
 package ru.job4j.tracker;
 
+import java.util.regex.Pattern;
+
 public class ValidateInput implements Input {
 
     private final Input input;
@@ -12,19 +14,34 @@ public class ValidateInput implements Input {
         return this.input.ask(s);
     }
 
-    public int ask(String question, int[] range) {
-        int result = -1;
-        boolean invalid = true;
-        while (invalid) {
-            try {
-                result = this.input.ask(question, range);
-                invalid = false;
-            } catch (NumberFormatException e) {
-                System.out.println("Введите корректные данные");
-            } catch (MenuOutException e) {
+    private boolean validate(String key, int[] range) {
+        boolean result = true;
+        if (!Pattern.matches("^[0-9]+$", key)) {
+            System.out.println("Введите корректные данные");
+            result = false;
+        } else {
+            int anInt = Integer.parseInt(key);
+            boolean exist = false;
+            for (int value : range) {
+                if (anInt == value) {
+                    exist = true;
+                    break;
+                }
+            }
+            if (!exist) {
+                result = false;
                 System.out.println("Выберите номер из меню");
             }
         }
         return result;
+    }
+
+    public int ask(String question, int[] range) {
+        String key;
+        do {
+            key = this.ask(question);
+        }
+        while (!validate(key, range));
+        return Integer.parseInt(key);
     }
 }
