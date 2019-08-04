@@ -202,6 +202,7 @@ public class MenuTracker {
 
         @Override
         public void execute(Input input, Tracker tracker) {
+            System.exit(0);
         }
     }
 }
