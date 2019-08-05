@@ -17,6 +17,8 @@ public class StartUI {
      */
     private final Tracker tracker;
 
+    private boolean isWorking = true;
+
     /**
      * Конструтор инициализирующий поля.
      *
@@ -33,12 +35,16 @@ public class StartUI {
      */
     public void init() {
         MenuTracker menu = new MenuTracker(this.input, this.tracker);
-        menu.fillActions();
-        while (true) {
+        menu.fillActions(this);
+        while (this.isWorking) {
             menu.show();
             int ask = input.ask("Select:", menu.getRanges());
             menu.select(ask);
         }
+    }
+
+    public void stop() {
+        this.isWorking = false;
     }
 
     /**
