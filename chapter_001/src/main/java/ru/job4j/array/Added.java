@@ -20,17 +20,15 @@ public class Added {
         int p2 = 0;
         for (int i = 0; i < result.length; i++) {
 
-            if (p1 == m1.length) {
-                System.arraycopy(m2, p2, result, i, m2.length - p2);
-                break;
-            }
-            if (p2 == m2.length) {
-                System.arraycopy(m1, p1, result, i, m1.length - p1);
-                break;
-            }
-
-
-            if (m1[p1] <= m2[p2]) {
+            if (p1 < m1.length && p2 < m2.length) {
+                if (m1[p1] <= m2[p2]) {
+                    result[i] = m1[p1];
+                    p1++;
+                } else {
+                    result[i] = m2[p2];
+                    p2++;
+                }
+            } else if (p1 < m1.length) {
                 result[i] = m1[p1];
                 p1++;
             } else {
