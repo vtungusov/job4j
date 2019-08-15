@@ -22,9 +22,13 @@ public class PawnBlack implements Figure {
 
     @Override
     public Cell[] way(Cell source, Cell dest) {
-        Cell[] steps = new Cell[0];
+        Cell[] steps;
         if (source.y == dest.y + 1 && source.x == dest.x) {
             steps = new Cell[]{dest};
+        } else {
+            throw new IllegalStateException(
+                    String.format("Could not move by diagonal from %s to %s", source, dest)
+            );
         }
         return steps;
     }

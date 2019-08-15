@@ -29,10 +29,11 @@ public class Logic {
                 throw new IllegalStateException(
                         String.format("Could not move from %s to %s", source, dest)
                 );
-            }
-            if (steps.length > 0 && steps[steps.length - 1].equals(dest)) {
-                rst = true;
-                this.figures[index] = this.figures[index].copy(dest);
+            } else {
+                if (steps.length > 0 && steps[steps.length - 1].equals(dest)) {
+                    rst = true;
+                    this.figures[index] = this.figures[index].copy(dest);
+                }
             }
         }
         return rst;
@@ -40,13 +41,14 @@ public class Logic {
 
     private boolean wayIsFree(Cell[] steps) {
         boolean result = true;
+//        if (steps.length > 0) {
         for (Cell step : steps) {
-            System.out.println(step.toString());
             if (this.findBy(step) != -1) {
                 result = false;
                 break;
             }
         }
+//        }
         return result;
     }
 
