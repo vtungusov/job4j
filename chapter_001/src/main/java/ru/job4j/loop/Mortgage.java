@@ -13,7 +13,7 @@ public class Mortgage {
      * Расчитывает количество лет,
      * необходимых для погашения кредита
      *
-     * @param amount общая сумма кредита
+     * @param amount  общая сумма кредита
      * @param monthly ежемесячный платеж
      * @param percent процент по кредиту
      * @return количество лет
@@ -22,7 +22,7 @@ public class Mortgage {
         int year = 0;
         double total = amount + amount * percent / 100;
         while (total > 0) {
-            total -= 12*monthly;
+            total -= 12 * monthly;
             year++;
         }
         return year;

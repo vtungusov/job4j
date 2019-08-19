@@ -17,12 +17,13 @@ public class MatrixCheck {
         boolean dgn1Date = data[0][0];
         boolean dgn2Date = data[data.length - 1][0];
 
-        for (int i = 0; i < data.length; i++)
-            if ((data[i][i] != dgn1Date) ||
-                    (data[data.length - 1 - i][i] != dgn2Date)) {
+        for (int i = 0; i < data.length; i++) {
+            if ((data[i][i] != dgn1Date)
+                    || (data[data.length - 1 - i][i] != dgn2Date)) {
                 result = false;
                 break;
             }
+        }
         return result;
     }
 }

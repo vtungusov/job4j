@@ -9,15 +9,17 @@ public class Counter {
     /**
      * Считает сумму четных чисел в заданном интервале
      *
-     * @param start начальное число
+     * @param start  начальное число
      * @param finish конечное число
      * @return сумма чисел
      */
     public int add(int start, int finish) {
         int sum = 0;
-        for (int i = start; i <= finish; i++)
-            if (i % 2 == 0)
+        for (int i = start; i <= finish; i++) {
+            if (i % 2 == 0) {
                 sum += i;
+            }
+        }
         return sum;
     }
 }

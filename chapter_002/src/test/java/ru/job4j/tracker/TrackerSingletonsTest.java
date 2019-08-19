@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 public class TrackerSingletonsTest {
 
     @Test
-    public void TrackerSingletonEnumTest() {
+    public void trackerSingletonEnumTest() {
 
         TrackerSingleEnum instance1 = TrackerSingleEnum.INSTANCE;
         instance1.add(new Item("name1", "desc1"));
@@ -24,7 +24,7 @@ public class TrackerSingletonsTest {
     }
 
     @Test
-    public void TrackerSingletonTwoTest() {
+    public void trackerSingletonTwoTest() {
 
         TrackerSingleTwo instance1 = TrackerSingleTwo.getInstance();
         instance1.add(new Item("name1", "desc1"));
@@ -38,7 +38,7 @@ public class TrackerSingletonsTest {
     }
 
     @Test
-    public void TrackerSingletonTwoThree() {
+    public void trackerSingletonTwoThree() {
 
         TrackerSingleThree instance1 = TrackerSingleThree.getInstance();
         instance1.add(new Item("name1", "desc1"));
@@ -52,7 +52,7 @@ public class TrackerSingletonsTest {
     }
 
     @Test
-    public void TrackerSingletonTwoFour() {
+    public void trackerSingletonTwoFour() {
 
         TrackerSingleFour instance1 = TrackerSingleFour.getInstance();
         instance1.add(new Item("name1", "desc1"));

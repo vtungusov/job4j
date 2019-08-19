@@ -11,8 +11,8 @@ public class ArrayDuplicate {
         int dupCount = 0;
 
         /*Поиск дубликата в массиве*/
-        for (int i = 0; i < array.length; i++)
-            for (int j = 1 + i; j < array.length - dupCount; j++)
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 1 + i; j < array.length - dupCount; j++) {
                 if (array[i].equals(array[j])) {
 
                     /*Смещение дубликата в конец массива*/
@@ -23,6 +23,8 @@ public class ArrayDuplicate {
                     }
                     dupCount++;
                 }
+            }
+        }
 
         /*Отрезаем дубликаты от исходного массива*/
         array = Arrays.copyOf(array, array.length - dupCount);
