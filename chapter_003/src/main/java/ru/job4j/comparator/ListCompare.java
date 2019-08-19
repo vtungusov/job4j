@@ -12,11 +12,12 @@ public class ListCompare implements Comparator<String> {
         int lim2 = massR.length;
 
         int lim = Math.min(lim1, lim2);
+        int result = lim1 - lim2;
         for (int i = 0; i < lim; i++) {
             if (massL[i] != massR[i]) {
-                return Character.compare(massL[i], massR[i]);
+                result = Character.compare(massL[i], massR[i]);
             }
         }
-        return lim1 - lim2;
+        return result;
     }
 }
