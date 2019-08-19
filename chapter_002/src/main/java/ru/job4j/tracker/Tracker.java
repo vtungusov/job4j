@@ -1,5 +1,7 @@
 package ru.job4j.tracker;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -8,8 +10,9 @@ import java.util.Random;
  */
 
 public class Tracker {
-    private final Item[] items = new Item[100];
-    private int position = 0;
+    private final List<Item> items = new ArrayList<>(100);
+    //    private final Item[] items = new Item[100];
+//    private int position = 0;
     private final Random random = new Random();
 
     /**
@@ -20,7 +23,8 @@ public class Tracker {
      */
     public Item add(Item item) {
         item.setId(generateId());
-        this.items[position++] = item;
+        items.add(item);
+//        this.items[position++] = item;
         return item;
     }
 
@@ -44,13 +48,20 @@ public class Tracker {
     public boolean replace(String id, Item item) {
         item.setId(id);
         boolean result = false;
-        for (int i = 0; i < this.position; i++) {
+        for (Item each : items) {
+            if (each.getId().equals(id)) {
+                items.set(items.indexOf(each), item);
+                result = true;
+                break;
+            }
+        }
+/*        for (int i = 0; i < this.position; i++) {
             if (this.items[i].getId().equals(id)) {
                 this.items[i] = item;
                 result = true;
                 break;
             }
-        }
+        }*/
         return result;
     }
 
@@ -62,15 +73,21 @@ public class Tracker {
      */
     public boolean delete(String id) {
         boolean result = false;
-
-        for (int i = 0; i < this.position; i++) {
+        for (Item item : items) {
+            if (item.getId().equals(id)) {
+                items.remove(item);
+                result = true;
+                break;
+            }
+        }
+        /*for (int i = 0; i < this.position; i++) {
             if (this.items[i].getId().equals(id)) {
                 System.arraycopy(this.items, i + 1, this.items, i, this.position);
                 position--;
                 result = true;
                 break;
             }
-        }
+        }*/
         return result;
     }
 
@@ -79,10 +96,11 @@ public class Tracker {
      *
      * @return array of found items
      */
-    public Item[] findAll() {
-        Item[] result = new Item[this.position];
+    public List<Item> findAll() {
+        return items;
+        /*Item[] result = new Item[this.position];
         System.arraycopy(this.items, 0, result, 0, position);
-        return result;
+        return result;*/
     }
 
     /**
@@ -91,9 +109,15 @@ public class Tracker {
      * @param key item name
      * @return array of found items
      */
-    public Item[] findByName(String key) {
+    public List<Item> findByName(String key) {
         int count = 0;
-        for (int i = 0; i < this.position; i++) {
+        List<Item> result = new ArrayList<>();
+        for (Item item : items) {
+            if (item != null && item.getName().equals(key)) {
+                result.add(item);
+            }
+        }
+        /*for (int i = 0; i < this.position; i++) {
             if (this.items[i].getName().equals(key)) {
                 count++;
             }
@@ -104,7 +128,7 @@ public class Tracker {
             if (this.items[i] != null && this.items[i].getName().equals(key)) {
                 result[index++] = this.items[i];
             }
-        }
+        }*/
         return result;
     }
 
@@ -116,13 +140,19 @@ public class Tracker {
      */
     public Item findById(String id) {
         Item result = null;
-        for (int i = 0; i < this.position; i++) { // position instead of length
-            Item item = items[i];
-            if (item != null && item.getId().equals(id)) {
+        for (Item item : items) {
+            if (item.getId().equals(id)) {
                 result = item;
                 break;
             }
         }
+//        for (int i = 0; i < this.position; i++) { // position instead of length
+//            Item item = items[i];
+//            if (item != null && item.getId().equals(id)) {
+//                result = item;
+//                break;
+//            }
+//        }
         return result;
     }
 

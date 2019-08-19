@@ -2,6 +2,9 @@ package ru.job4j.tracker;
 
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -44,9 +47,9 @@ public class TrackerTest {
         tracker.add(itemDelete);
         tracker.add(item3);
         boolean res1 = tracker.delete(itemDelete.getId());
-        Item[] all = tracker.findAll();
+        List<Item> all = tracker.findAll();
         Item res2 = tracker.findById(itemDelete.getId());
-        boolean result = res1 && (res2 == null) && all.length == 2;
+        boolean result = res1 && (res2 == null) && all.size() == 2;
         assertThat(result, is(true));
     }
 
@@ -56,7 +59,7 @@ public class TrackerTest {
         tracker.add(new Item("name1", "desc1", 123L));
         tracker.add(new Item("name2", "desc2", 123L));
         tracker.add(new Item("name3", "desc3", 123L));
-        int result = tracker.findAll().length;
+        int result = tracker.findAll().size();
         assertThat(result, is(3));
     }
 
@@ -71,11 +74,11 @@ public class TrackerTest {
         tracker.add(new Item("name1", "desc2", 333L));
         tracker.add(new Item("name1", "desc234", 444L));
         tracker.add(new Item("name2", "desc666", 666L));
-        Item[] result = tracker.findByName("name1");
-        for (int i = 0; i < result.length; i++) {
-            expect[i].setId(result[i].getId());
+        List<Item> result = tracker.findByName("name1");
+        for (int i = 0; i < result.size(); i++) {
+            expect[i].setId(result.get(i).getId());
         }
-        assertThat(result, is(expect));
+        assertThat(result, is(Arrays.asList(expect)));
     }
 
     @Test

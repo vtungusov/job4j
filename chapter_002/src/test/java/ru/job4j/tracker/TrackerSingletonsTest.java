@@ -2,6 +2,8 @@ package ru.job4j.tracker;
 
 import org.junit.Test;
 
+import java.util.List;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
@@ -16,7 +18,7 @@ public class TrackerSingletonsTest {
         TrackerSingleEnum instance2 = TrackerSingleEnum.INSTANCE;
         instance2.add(new Item("name2", "desc2"));
 
-        Item[] except = instance2.findAll();
+        List<Item> except = instance2.findAll();
 
         assertThat(instance1.findAll(), is(except));
     }
@@ -30,7 +32,7 @@ public class TrackerSingletonsTest {
         TrackerSingleTwo instance2 = TrackerSingleTwo.getInstance();
         instance2.add(new Item("name2", "desc2"));
 
-        Item[] except = instance2.findAll();
+        List<Item> except = instance2.findAll();
 
         assertThat(instance1.findAll(), is(except));
     }
@@ -44,7 +46,7 @@ public class TrackerSingletonsTest {
         TrackerSingleThree instance2 = TrackerSingleThree.getInstance();
         instance2.add(new Item("name2", "desc2"));
 
-        Item[] except = instance2.findAll();
+        List<Item> except = instance2.findAll();
 
         assertThat(instance1.findAll(), is(except));
     }
@@ -58,7 +60,7 @@ public class TrackerSingletonsTest {
         TrackerSingleFour instance2 = TrackerSingleFour.getInstance();
         instance2.add(new Item("name2", "desc2"));
 
-        Item[] except = instance2.findAll();
+        List<Item> except = instance2.findAll();
 
         assertThat(instance1.findAll(), is(except));
     }
