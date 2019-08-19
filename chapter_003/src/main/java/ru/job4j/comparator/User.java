@@ -2,6 +2,7 @@ package ru.job4j.comparator;
 
 public class User implements Comparable<User> {
     private String name;
+    private int age;
 
     public String getName() {
         return name;
@@ -10,8 +11,6 @@ public class User implements Comparable<User> {
     public int getAge() {
         return age;
     }
-
-    private int age;
 
     public User(String name, int age) {
         this.name = name;
