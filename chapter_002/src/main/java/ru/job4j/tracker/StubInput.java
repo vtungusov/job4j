@@ -1,5 +1,7 @@
 package ru.job4j.tracker;
 
+import java.util.List;
+
 /**
  * Класс - заглушка для тестирования консольного ввода-вывода класса StartUI
  */
@@ -42,7 +44,7 @@ public class StubInput implements Input {
     }
 
     @Override
-    public int ask(String question, int[] range) {
+    public int ask(String question, List<Integer> range) {
         int key = Integer.parseInt(this.ask(question));
         boolean exist = false;
         for (int value : range) {
@@ -53,6 +55,8 @@ public class StubInput implements Input {
         }
         if (exist) {
             return key;
-        } else throw new MenuOutException("Out of menu range");
+        } else {
+            throw new MenuOutException("Out of menu range");
+        }
     }
 }

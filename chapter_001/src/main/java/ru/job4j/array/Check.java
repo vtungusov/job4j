@@ -16,8 +16,9 @@ public class Check {
         boolean result = true;
         boolean flag = data[0];
         for (int i = 1; i < data.length - 1; i++) {
-            if (data[i] != flag)
+            if (data[i] != flag) {
                 result = false;
+            }
         }
         return result;
     }

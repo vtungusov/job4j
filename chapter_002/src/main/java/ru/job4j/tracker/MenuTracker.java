@@ -19,11 +19,13 @@ public class MenuTracker {
      */
     private Tracker tracker;
 
-    public int[] getRanges() {
-        int[] result = new int[this.getActionsLentgh()];
+    public List<Integer> getRanges() {
+        List<Integer> result = new ArrayList<>();
+//        int[] result = new int[this.getActionsLentgh()];
         int pointer = 0;
         for (UserAction action : actions) {
-            result[pointer++] = action.key();
+            result.add(action.key());
+//            result[pointer++] = action.key();
         }
         return result;
     }
@@ -110,10 +112,13 @@ public class MenuTracker {
         @Override
         public void execute(Input input, Tracker tracker) {
             System.out.println("------------ Список существующих заявок: ------------");
-            Item[] all = tracker.findAll();
-            for (int i = 0; i < all.length; i++) {
-                System.out.println(i + 1 + ". " + all[i].toString());
+            List<Item> all = tracker.findAll();
+            for (Item item : all) {
+                System.out.println(all.indexOf(item) + 1 + ". " + item.toString());
             }
+//            for (int i = 0; i < all.length; i++) {
+//                System.out.println(i + 1 + ". " + all[i].toString());
+//            }
         }
     }
 
@@ -186,11 +191,15 @@ public class MenuTracker {
         public void execute(Input input, Tracker tracker) {
             System.out.println("------------ Поиск заявки по имени ------------");
             String name = input.ask("Введите имя искомой заявки :");
-            Item[] items = tracker.findByName(name);
+            List<Item> items = tracker.findByName(name);
+//            Item[] items = tracker.findByName(name);
             System.out.println("------------ Информация по заявкам с именем " + name + " : ------------");
-            for (int i = 0; i < items.length; i++) {
-                System.out.println(i + 1 + ". " + items[i].toString());
+            for (Item item : items) {
+                System.out.println(items.indexOf(item) + 1 + ". " + item.toString());
             }
+//            for (int i = 0; i < items.length; i++) {
+//                System.out.println(i + 1 + ". " + items[i].toString());
+//            }
         }
     }
 

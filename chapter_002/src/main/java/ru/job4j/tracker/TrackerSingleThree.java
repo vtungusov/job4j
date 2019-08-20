@@ -1,7 +1,9 @@
 package ru.job4j.tracker;
 
+import java.util.List;
+
 public class TrackerSingleThree {
-    private static final TrackerSingleThree ourInstance = new TrackerSingleThree(); //зачем тут final? идея генерирует без него.
+    private static final TrackerSingleThree OUR_INSTANCE = new TrackerSingleThree(); //зачем тут final? идея генерирует без него.
 
     private Tracker tracker = new Tracker();
 
@@ -9,7 +11,7 @@ public class TrackerSingleThree {
     }
 
     public static TrackerSingleThree getInstance() {
-        return ourInstance;
+        return OUR_INSTANCE;
     }
 
     /**
@@ -48,7 +50,7 @@ public class TrackerSingleThree {
      *
      * @return array of found items
      */
-    public Item[] findAll() {
+    public List<Item> findAll() {
         return tracker.findAll();
     }
 
@@ -58,7 +60,7 @@ public class TrackerSingleThree {
      * @param key item name
      * @return array of found items
      */
-    public Item[] findByName(String key) {
+    public List<Item> findByName(String key) {
         return tracker.findByName(key);
     }
 
