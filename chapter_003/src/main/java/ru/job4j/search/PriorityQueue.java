@@ -15,14 +15,16 @@ public class PriorityQueue {
      */
     public void put(Task task) {
         int insIndex = 0;
-        for (Iterator<Task> iterator = tasks.iterator(); iterator.hasNext();) {
+        int index = -1;
+        for (Iterator<Task> iterator = tasks.iterator(); iterator.hasNext(); ) {
             Task next = iterator.next();
+            index++;
             if (next.getPriority() > task.getPriority()) {
-                insIndex = this.tasks.indexOf(next);
+                insIndex = index;
                 break;
             }
             if (!iterator.hasNext()) {
-                insIndex = this.tasks.indexOf(next) + 1;
+                insIndex = index + 1;
                 break;
             }
         }
