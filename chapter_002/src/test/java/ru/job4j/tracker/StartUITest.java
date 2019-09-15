@@ -8,13 +8,22 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.List;
 import java.util.StringJoiner;
+import java.util.function.Consumer;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 
 public class StartUITest {
-    private final PrintStream stnOut = System.out;
     private final ByteArrayOutputStream out = new ByteArrayOutputStream();
+    private final Consumer<String> output = new Consumer<>() {
+        private final PrintStream stnOut = new PrintStream(out);
+
+        @Override
+        public void accept(String s) {
+            stnOut.println(s);
+        }
+    };
+
     private String ls = System.lineSeparator();
     private final String menu = (new StringJoiner(ls)
             .add("Меню.")
@@ -26,21 +35,11 @@ public class StartUITest {
             .add("5. Find items by name")
             .add("6. Exit Program")).toString();
 
-    @Before
-    public void setOut() {
-        System.setOut(new PrintStream(this.out));
-    }
-
-    @After
-    public void revertOut() {
-        System.setOut(this.stnOut);
-    }
-
     @Test
     public void whenUserAddItemThenTrackerHasNewItemWithSameName() {
         Tracker tracker = new Tracker();     // создаём Tracker
         Input input = new StubInput(new String[]{"0", "test name", "desc", "6"});   //создаём StubInput с последовательностью действий
-        new StartUI(input, tracker).init();     //   создаём StartUI и вызываем метод init()
+        new StartUI(input, tracker, output).init();     //   создаём StartUI и вызываем метод init()
         List<Item> items = tracker.findByName("test name");
         assertThat(tracker.findAll(), is(items)); // проверяем, что нулевой элемент массива в трекере содержит имя, введённое при эмуляции.
     }
@@ -54,7 +53,7 @@ public class StartUITest {
         //создаём StubInput с последовательностью действий(производим замену заявки)
         Input input = new StubInput(new String[]{"2", item.getId(), "test replace", "заменили заявку", "6"});
         // создаём StartUI и вызываем метод init()
-        new StartUI(input, tracker).init();
+        new StartUI(input, tracker, output).init();
         // проверяем, что нулевой элемент массива в трекере содержит имя, введённое при эмуляции.
         assertThat(tracker.findById(item.getId()).getName(), is("test replace"));
     }
@@ -64,7 +63,7 @@ public class StartUITest {
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("test name", "desc"));
         Input input = new StubInput(new String[]{"3", item.getId(), "6"});
-        new StartUI(input, tracker).init();
+        new StartUI(input, tracker, output).init();
         assertThat(tracker.findAll().size(), is(0));
     }
 
@@ -73,7 +72,7 @@ public class StartUITest {
         Tracker tracker = new Tracker();
         Item add = tracker.add(new Item("test name", "desc"));
         Input input = new StubInput(new String[]{"1", "6"});
-        new StartUI(input, tracker).init();
+        new StartUI(input, tracker, output).init();
         String ls = System.lineSeparator();
         StringJoiner except = new StringJoiner(ls, "", ls);
         except
@@ -90,7 +89,7 @@ public class StartUITest {
         String ls = System.lineSeparator();
         Item add = tracker.add(new Item("name by id", "desc by id"));
         Input input = new StubInput(new String[]{"4", add.getId(), "6"});
-        new StartUI(input, tracker).init();
+        new StartUI(input, tracker, output).init();
 
         StringJoiner except = new StringJoiner(ls);
         except
@@ -108,7 +107,7 @@ public class StartUITest {
         String ls = System.lineSeparator();
         Item add = tracker.add(new Item("name by name", "desc by name"));
         Input input = new StubInput(new String[]{"5", add.getName(), "6"});
-        new StartUI(input, tracker).init();
+        new StartUI(input, tracker, output).init();
 
         StringJoiner except = new StringJoiner(ls);
         except
