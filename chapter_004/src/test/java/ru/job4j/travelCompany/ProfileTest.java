@@ -14,17 +14,19 @@ public class ProfileTest {
 
     @Before
     public void setUp() {
-        profiles.add(new Profile(new Address("Msc", "Lenina", 412, 1000)));
-        profiles.add(new Profile(new Address("Nsk", "Kirova", 30, 400)));
-        profiles.add(new Profile(new Address("Tsk", "Frunze", 5, 22)));
+        profiles.add(new Profile(new Address("B", "Lenina", 412, 1000)));
+        profiles.add(new Profile(new Address("B", "Lenina", 412, 1000)));
+        profiles.add(new Profile(new Address("B", "Lenina", 412, 1000)));
+        profiles.add(new Profile(new Address("A", "Kirova", 30, 400)));
+        profiles.add(new Profile(new Address("C", "Frunze", 5, 22)));
     }
 
     @Test
     public void collect() {
         List<Address> expect = new ArrayList<>();
-        expect.add(new Address("Msc", "Lenina", 412, 1000));
-        expect.add(new Address("Nsk", "Kirova", 30, 400));
-        expect.add(new Address("Tsk", "Frunze", 5, 22));
+        expect.add(new Address("A", "Kirova", 30, 400));
+        expect.add(new Address("B", "Lenina", 412, 1000));
+        expect.add(new Address("C", "Frunze", 5, 22));
 
         assertThat(Profile.collect(profiles), is(expect));
     }
