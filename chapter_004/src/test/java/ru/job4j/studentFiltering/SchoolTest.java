@@ -39,7 +39,7 @@ public class SchoolTest {
         List<Student> except = new ArrayList<>();
         except.add(new Student("Ivanov", 80));
 
-        List<Student> result = school.collect(studentsHeap, student ->
+        List<Student> result = school.separateBy(studentsHeap, student ->
                 70 <= student.score && student.score <= 100
         );
 
@@ -51,7 +51,7 @@ public class SchoolTest {
         List<Student> except = new ArrayList<>();
         except.add(new Student("Petrov", 60));
 
-        List<Student> result = school.collect(studentsHeap, student ->
+        List<Student> result = school.separateBy(studentsHeap, student ->
                 50 <= student.score && student.score < 70
         );
 
@@ -63,10 +63,25 @@ public class SchoolTest {
         List<Student> except = new ArrayList<>();
         except.add(new Student("Sidorov", 25));
 
-        List<Student> result = school.collect(studentsHeap, student ->
+        List<Student> result = school.separateBy(studentsHeap, student ->
                 0 < student.score && student.score < 50
         );
 
         assertThat(result, is(except));
+    }
+
+    @Test
+    public void levelOf() {
+        List<Student> oneMore = new ArrayList<>();
+        oneMore.add(new Student(90));
+        oneMore.add(new Student(9));
+        oneMore.add(new Student("Petrov", 86));
+        oneMore.add(new Student("Kyskov", 40));
+        oneMore.add(new Student("Daynov", 1));
+
+        List<Student> except = new ArrayList<>();
+        except.add(new Student(90));
+
+        assertThat(school.levelOf(oneMore, 80), is(except));
     }
 }
