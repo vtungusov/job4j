@@ -10,16 +10,16 @@ import static org.junit.Assert.*;
 public class SortUserTest {
     @Test
     public void sort() {
-        List<User> users = new ArrayList<>(Arrays.asList(
+        List<User> users = List.of(
                 new User("ivan", 12),
                 new User("vasily", 10),
                 new User("petr", 15)
-        ));
-        List<User> expect = new ArrayList<>(Arrays.asList(
+        );
+        List<User> expect = List.of(
                 new User("ivan", 12),
                 new User("petr", 15),
                 new User("vasily", 10)
-        ));
+        );
         SortUser sortUser = new SortUser();
         TreeSet<User> result = (TreeSet<User>) sortUser.sort(users);
 
@@ -34,12 +34,12 @@ public class SortUserTest {
                 new User("sergei", 20),
                 new User("ivan", 25)
         ));
-        List<User> expect = new ArrayList<>(Arrays.asList(
+        List<User> expect = List.of(
                 new User("ivan", 25),
                 new User("ivan", 30),
                 new User("sergei", 20),
                 new User("sergei", 25)
-        ));
+        );
         SortUser sortUser = new SortUser();
         List<User> result = sortUser.sortByAllFields(users);
         assertThat(result.toString(), is(expect.toString()));
@@ -53,12 +53,12 @@ public class SortUserTest {
                 new User("sergei", 20),
                 new User("ivan", 25)
         ));
-        List<User> expect = new ArrayList<>(Arrays.asList(
+        List<User> expect = List.of(
                 new User("ivan", 25),
                 new User("ivan", 30),
                 new User("sergei", 20),
                 new User("sergei", 25)
-        ));
+        );
         SortUser sortUser = new SortUser();
         List<User> result = sortUser.sortByAllFields(users);
         assertThat(result.toString(), is(expect.toString()));
