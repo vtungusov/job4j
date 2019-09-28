@@ -14,10 +14,10 @@ public class PriorityQueue {
      * @param task задача
      */
     public void put(Task task) {
-        int insIndex = 0;
-        int index = -1;
+        var insIndex = 0;
+        var index = -1;
         for (Iterator<Task> iterator = tasks.iterator(); iterator.hasNext();) {
-            Task next = iterator.next();
+            var next = iterator.next();
             index++;
             if (next.getPriority() > task.getPriority()) {
                 insIndex = index;
